@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AddView: View {
     
+    @EnvironmentObject var listViewModel: ListViewModel
+    
     @State var taskTitle: String = ""
     var body: some View {
         ScrollView {
@@ -18,7 +20,10 @@ struct AddView: View {
                     .frame(height: 55)
                     .background(.black.opacity(0.15))
                     .cornerRadius(10)
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    listViewModel.addItem(title: taskTitle)
+                    taskTitle = ""
+                }, label: {
                     Text("Save".uppercased())
                         .frame(height: 55)
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
